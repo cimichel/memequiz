@@ -1,10 +1,19 @@
-{% load static %}
-<html>
+{% comment %} {% load static %}
+<html lang="en" dir="ltr">
     <head>
-        <title>
-            What's your meme?
-        </title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <meta charset="utf-8">
+        <title>What's your meme?</title>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+        <meta author="Alex B" />
+        <meta property="og:image" content="assets/preview.png" />
+    
+        <link rel="shortcut icon" href="assets/icons/computer-3.png" type="image/png">
+    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+        <link rel="stylesheet" type="text/css" href="assets/win95.css">
+    
+    
     </head>
     <body>        
         {% include 'Quiz/navbar.html' %}
@@ -16,4 +25,4 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </body>
-</html>
+</html> {% endcomment %}
