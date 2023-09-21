@@ -26,6 +26,8 @@ urlpatterns = [
     path('login/', loginPage,name='login'),
     path('logout/', logoutPage,name='logout'),
     path('register/', registerPage,name='register'),
+    path('quiz/', quizPage,name='quiz'),
+    path('minesweeper/', minePage,name='minesweeper'),
  
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

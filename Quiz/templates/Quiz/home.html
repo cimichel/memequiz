@@ -1,72 +1,13 @@
 {% load static %}
-{% comment %} {% extends 'Quiz/dependencies.html' %} {% endcomment %}
- 
-{% comment %} {% block content %}
-{% load static %}
-<div class="container ">
-<h1>What's your meme?</h1>
- 
-<div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
- 
- <form method='post' action=''>
-    {% csrf_token %}
-    {% for q  in questions%}
-    <div class="row">
-        <div class="col-sm-4">
-            <label for="image">{{q.image}}</label>
-            <img src="{{ q.image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
-        </div>
-      </div>
-    <div class="form-group">
-      <label for="question">{{q.question}}</label>
-    </div>
-    <div class="form-check">
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option1" checked>
-            <label class="form-check-label" for="gridRadios1">
-                {{q.op1}}
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option2">
-            <label class="form-check-label" for="gridRadios2">
-                {{q.op2}}
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option3">
-            <label class="form-check-label" for="gridRadios1">
-                {{q.op3}}
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option4">
-            <label class="form-check-label" for="gridRadios2">
-                {{q.op4}}
-            </label>
-        </div>
-        <br>
-    </div>    
-    {% endfor %}
-    <input id='timer' type='hidden' name="timer" value="">
-    <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-    {% block script %}
-
-    {% endblock script %}
- 
-</div>
-{% endblock %} {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
-    <title>WHAT'S YOUR MEME?</title>
+    <title>Cintia's Portfolio</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
-    <meta author="Alex B" />
+    <meta author="Cintia" />
     <meta property="og:image" content="assets/preview.png" />
 
     <link rel="shortcut icon" href="assets/icons/computer-3.png" type="image/png">
@@ -78,97 +19,163 @@
 
 </head>
 
-<body class="windows-scrollbar">    
+<body class="windows-scrollbar">
 
     <!-- Navbar -->
-    {% include "./navbar.html" %}
+    <nav class="navbar navbar-expand-lg navbar-light navbar-95 ">
+        <a class="navbar-brand" href="#">
+            <img src="{% static "images/assets/icons/computer-3.png" %}"> Hello/Ola</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+      
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                </li>
+                <li class="nav-item active">
+                  
+                {% if request.user.is_staff %}
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'addQuestion' %}">Add Question</a>
+                </li>
+                {% endif %} 
+           
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'quiz' %}">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'minesweeper' %}">mine</a>
+                  </li>
+              </ul>
+        </div>
+        <span class="greet">Hello, {{request.user}} </span>
+        <span ><a  class="greet" href="{% url 'logout' %}"> Logout </a></span>
+ 
+    </nav>
 
     <!-- Header -->
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Know your meme</h1>
-        <p class="lead">Test your knowledge, from 2003 - 2023.</p>
+        <h1 class="display-4">Cintia Michel </h1>
+        <p class="lead">Software Developer</p>
+        <br>
+        <img src="{% static '/images/assets/banana.gif' %}" class="img-fluid">
     </div>
 
     <!-- Not header -->
 
     <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-8 text-center">
-                <img src="{% static '/images/assets/nostalgia.jpg' %}"  class="img-fluid">
-            </div>
-            <div class="col-md-4 my-auto">
-                <div class="card">
+        <div class="col-md-8 text-center">
+            <div class="container">
+                <div class="card w95 mb-4">
                     <div class="card-header">
-                        <h4 class="my-0 font-weight-normal">Timer</h4>
+                        <h4 class="my-0 font-weight-normal">WARNING</h4>
                     </div>
-                    <div class="card-body">
-                        <div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
-                        <a href="#" class="btn btn-lg btn-block"><img src="{% static '/images/assets/icons/internet_connection_wiz-5.png' %}" class="icon-16"> Whatever</a>
+                    <div class="card-body windows-scrollbar" style="overflow-y: scroll; height:200px;">
+                        <img src="{% static '/images/assets/shakira.jpeg' %}" class="img-fluid">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                           Girl Coding
+                        </button>
+                        <p>Click button to show modal.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap cards -->
+
+    <div class="container" id="page-content">
+        <div class="card-deck mb-3 text-center">
+            <div class="card square mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Play Meme Trivia</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Test your knowledge since 2003</li>
+                        <li>Add new memes</li>
+                        <li>Share your score</li>
+                        <li>Please read the rules</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" ><a href="{% url 'quiz' %}">Let's go</a></button>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Play Minesweeper</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Under Construction</li>
+                        <li><img src="{% static '/images/assets/icons/game_mine_1-0.png' %}"></li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                </div>
+            </div>
+            <div class="card w95 mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal"> Visit Github</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>20 users included</li>
+                        <li>10 GB of storage</li>
+                        <li>Priority email support</li>
+                        <li>Help center access</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card-header header-inactive">
+                    <h4 class="my-0 font-weight-normal">Visit Myspace</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>30 users included</li>
+                        <li>15 GB of storage</li>
+                        <li>Phone and email support</li>
+                        <li>Help center access</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-primary" disabled>Contact us</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Forms -->
 
     <div class="container">
         <div class="card mb-4">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Meme university</h4>
+                <h4 class="my-0 font-weight-normal">Forms</h4>
             </div>
             <div class="card-body">
-                <form method='post' action=''>
-                    {% csrf_token %}
-                    {% for q  in questions%}
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img src="{{ q.image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
-                        </div>
-                      </div>
-                    <div class="form-group">
-                      <label for="question">{{q.question}}</label>
-                    </div>
-                    <div class="form-check">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option1">
-                            <label class="form-check-label" for="gridRadios1">
-                                {{q.op1}}
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option2">
-                            <label class="form-check-label" for="gridRadios2">
-                                {{q.op2}}
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option3">
-                            <label class="form-check-label" for="gridRadios1">
-                                {{q.op3}}
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option4">
-                            <label class="form-check-label" for="gridRadios2">
-                                {{q.op4}}
-                            </label>
-                        </div>
-                        <br>
-                    </div>    
-                    {% endfor %}
-                    <input id='timer' type='hidden' name="timer" value="">
-                    <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-                {% comment %} <form>
+                <form>
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label"><img src="{% static '/images/assets/icons/internet_connection_wiz-5.png' %}" class="icon-16-4"> Email</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label"><img src="assets/icons/envelope_closed-1.png" class="icon-16-4"> Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-95" id="inputEmail3">
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-2 col-form-label"><img src="assets/icons/keys-0.png" class="icon-16-4"> Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-95" id="inputPassword3">
+                        </div>
                     </div>
                     <fieldset class="form-group">
                         <div class="row">
@@ -196,11 +203,22 @@
                         </div>
                     </fieldset>
                     <div class="form-group row">
+                        <div class="col-sm-2">Checkbox</div>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                <label class="form-check-label" for="gridCheck1">
+                                    Example checkbox
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Sign in</button>
                         </div>
                     </div>
-                </form> {% endcomment %}
+                </form>
             </div>
         </div>
     </div>
@@ -214,10 +232,10 @@
             </div>
             <div class="card-body">
                 <p>Here we have 256-color icons from Windows 98. In png. <br>
-                    All icons can be viewed at <a href="https://win98icons.alexmeub.com/"> <img src="templates/assets/icons/search_web-1.png" class="icon-16-4"> win98icons.alexmeub.com</a></p>
-                <img src="{% static 'images/assets/icons/msie1-4.png' %}">
-                <img src="{% static 'images/assets/icons/laptop_small-0.png' %}">
-                <img src="{% static 'images/assets/icons/help_book_cool-1.png' %}">
+                    All icons can be viewed at <a href="https://win98icons.alexmeub.com/"> <img src="assets/icons/search_web-1.png" class="icon-16-4"> win98icons.alexmeub.com</a></p>
+                <img src="assets/icons/msie1-4.png">
+                <img src="assets/icons/laptop_small-0.png">
+                <img src="assets/icons/help_book_cool-1.png">
             </div>
         </div>
     </div>
@@ -231,13 +249,22 @@
             </div>
             <div class="card-body">
                 <p>Attempting to give a damn...</p>
+                <div class="progress card">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                <div class="progress">
+                    <div class="progress-bar " role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                <p>Attempting to looking for a job...</p>
                 <div class="progress">
                     <div class="progress-bar progress-bar-blocks" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <br>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Cancel
-                </button>
             </div>
         </div>
     </div>
@@ -265,17 +292,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><img src="{% static 'images/assets/icons/msg_warning-2.png' %}" class="img-fluid"> WARNING</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="{% static '/images/assets/ines-brasil.gif' %}" class="img-fluid">
+                    <img src="{% static 'images/assets/confused_travolta.gif' %}" class="img-fluid">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Whatever</button>
-                    <button type="button" class="btn btn-primary">Format C:\\</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -295,7 +322,7 @@
                 <p>Page with video background.</p>
 				
 				<a class="btn btn-primary " href="cloud.html">
-                    <img src="templates/assets/icons/world_network_directories-1.png" class="icon-16"> Cloud
+                    <img src="assets/icons/world_network_directories-1.png" class="icon-16"> Cloud
                 </a>
                 <p>Cloud hosting landing page template.</p>
 				
@@ -315,16 +342,14 @@
     <footer class="taskbar">
         <div class="row" style="margin-right: 0px;">
             <div class="col-8">
-                <a href="#" class="btn start-button"><img src="{% static '/images/assets/icons/users-1.png' %}"  class="icon-16">Author</a>
-                <a href="https://github.com/cimichel/memequiz" class="btn start-button"><img src="{% static '/images/assets/icons/directory_folder_options-5.png' %}" class="icon-16"> GitHub</a>
+                <a href="//alex-b.me" class="btn start-button"><img src="assets/icons/users-1.png" class="icon-16">Author</a>
+                <a href="https://github.com/AlexBSoft/win95.css" class="btn start-button"><img src="assets/icons/directory_folder_options-5.png" class="icon-16"> GitHub</a>
             </div>
-            <div class="col-4 time">Made by Cintia with some laughs 🇧🇷🧉🇦🇺🪃</div>
+            <div class="col-4 time">By Alex B</div>
         </div>
 
     </footer>
-    {% block script %}
-    <link rel="stylesheet" type="text/css" href="{% static 'js/script.js' %}">
-    {% endblock script %}
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
