@@ -1,10 +1,11 @@
-//minesweeper game by 101computing.net - www.101computing.et/minesweeper-in-javascript/
+ //minesweeper game by 101computing.net - www.101computing.et/minesweeper-in-javascript/
 var grid = document.getElementById("grid");
 var testMode = false; //Turn this variable to true to see where the mines are
-generateGrid();
+generateGrid(clicked_id);
 
-function generateGrid() {
+function generateGrid(clicked_id) {
   //generate 10 by 10 grid
+if (clicked_id=="1"){
   grid.innerHTML="";
   for (var i=0; i<10; i++) {
     row = grid.insertRow(i);
@@ -16,6 +17,32 @@ function generateGrid() {
       cell.setAttributeNode(mine);
     }
   }
+}
+else if ((clicked_id=="2")){
+  grid.innerHTML="";
+  for (var i=0; i<20; i++) {
+    row = grid.insertRow(i);
+    for (var j=0; j<20; j++) {
+      cell = row.insertCell(j);
+      cell.onclick = function() { clickCell(this); };
+      var mine = document.createAttribute("data-mine");       
+      mine.value = "false";             
+      cell.setAttributeNode(mine);
+    }
+  }
+}else if ((clicked_id=="3")){
+  grid.innerHTML="";
+  for (var i=0; i<30; i++) {
+    row = grid.insertRow(i);
+    for (var j=0; j<30; j++) {
+      cell = row.insertCell(j);
+      cell.onclick = function() { clickCell(this); };
+      var mine = document.createAttribute("data-mine");       
+      mine.value = "false";             
+      cell.setAttributeNode(mine);
+    }
+  }
+}
   addMines();
 }
 
@@ -83,3 +110,15 @@ function clickCell(cell) {
     checkLevelCompletion();
   }
 }
+
+console.log('hello world')
+const timer=document.getElementById('displaytimer')
+console.log(timer.textContent)
+const inputtag = document.getElementById('timer')
+
+t=0
+setInterval(()=>{
+    t+=1
+    timer.innerHTML ="<b>Timer: " +t+" seconds</b>"
+    inputtag.value = t
+},1000)

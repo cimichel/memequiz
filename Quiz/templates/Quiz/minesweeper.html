@@ -18,11 +18,14 @@
     <body>        
         {% include 'Quiz/navbar.html' %}
         {% block content %} 
-        
+        <div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
+
         <H1>Minesweeper</H1>
         <table id=grid>
         </table>
-        <BUTTON onclick="generateGrid();">Reset Grid</BUTTON>  
+        <BUTTON id="1" onclick="generateGrid(this.id);">Reset Grid</BUTTON> 
+        <BUTTON id="2"onclick="generateGrid(this.id);">Generate level 2 </BUTTON>
+        <BUTTON id="3"onclick="generateGrid(this.id);">Generate level 3</BUTTON>
         {% endblock %}
         <br>
        
